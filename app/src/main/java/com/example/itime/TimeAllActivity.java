@@ -16,7 +16,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import static com.example.itime.MainActivity.RESULT_UPDATE;
 
@@ -29,6 +33,7 @@ public class TimeAllActivity extends AppCompatActivity {
     TextView titleTextView2,descriptionTextView2;
     TextView datetextview,counttextview;
     private MyCount mc;
+    SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("MMM  dd,yyyy HH:mm:ss EEE", Locale.ENGLISH);
 
     int count;
     @Override
@@ -66,8 +71,14 @@ public class TimeAllActivity extends AppCompatActivity {
         String date=intent.getStringExtra("Date");
         final String description=intent.getStringExtra("Description");
         final int position=intent.getIntExtra("position", 0);
-        final int count=intent.getIntExtra("count", 0);
-
+        //final int count=intent.getIntExtra("count", 0);
+        Date date1=new Date(System.currentTimeMillis());
+        int count=0;
+        try {
+            count = TimeItem.getGapCount(simpleDateFormat2.parse(date), date1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         titleTextView2.setText(title);
         descriptionTextView2.setText(description);
         datetextview.setText(date);

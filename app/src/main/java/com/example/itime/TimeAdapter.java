@@ -27,8 +27,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class TimeAdapter extends ArrayAdapter<TimeItem> {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM  dd,yyyy", Locale.ENGLISH);
-    SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("MMM  dd,yyyy EEE", Locale.ENGLISH);
-    SimpleDateFormat simpleDateFormat3 = new SimpleDateFormat("MMM  dd,yyyy HH:mm:ss", Locale.ENGLISH);
+   
+    SimpleDateFormat simpleDateFormat3 = new SimpleDateFormat("MMM  dd,yyyy HH:mm:ss EEE", Locale.ENGLISH);
     // HH:mm:ss//获取当前时间
 
     int count;
@@ -59,10 +59,9 @@ public class TimeAdapter extends ArrayAdapter<TimeItem> {
 
                 Intent intent = new Intent(getContext(), TimeAllActivity.class);
                 intent.putExtra("Title", timeItem.getTitle());
-                intent.putExtra("Date", simpleDateFormat2.format(timeItem.getDate()));
+                intent.putExtra("Date", simpleDateFormat3.format(timeItem.getDate()));
                 intent.putExtra("Description", timeItem.getDescription());
                 intent.putExtra("position", position);
-                intent.putExtra("count", count);
                 ((Activity) getContext()).startActivityForResult(intent, 2);
             }
         });

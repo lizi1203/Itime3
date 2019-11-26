@@ -52,13 +52,13 @@ public class TimeItem implements Serializable {
     public static int getGapCount(Date startDate, Date endDate) {
         Calendar fromCalendar = Calendar.getInstance();
         fromCalendar.setTime(startDate);
-        fromCalendar.set(Calendar.HOUR_OF_DAY, 0);
-        fromCalendar.set(Calendar.MINUTE, 0);
-        fromCalendar.set(Calendar.SECOND, 0);
+        fromCalendar.set(Calendar.HOUR_OF_DAY, startDate.getHours());
+        fromCalendar.set(Calendar.MINUTE, startDate.getMinutes());
+        fromCalendar.set(Calendar.SECOND, startDate.getSeconds());
         fromCalendar.set(Calendar.MILLISECOND, 0);
         Calendar toCalendar = Calendar.getInstance();
         toCalendar.setTime(endDate);
-        toCalendar.set(Calendar.HOUR_OF_DAY, endDate.getDay());
+        toCalendar.set(Calendar.HOUR_OF_DAY, endDate.getHours());
         toCalendar.set(Calendar.MINUTE, endDate.getMinutes());
         toCalendar.set(Calendar.SECOND, endDate.getSeconds());
         toCalendar.set(Calendar.MILLISECOND, 0);
