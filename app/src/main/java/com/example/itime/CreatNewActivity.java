@@ -23,7 +23,7 @@ public class CreatNewActivity extends AppCompatActivity {
     EditText editTitle;
     EditText editDescription;
     ChooseAdapter chooseAdapter;
-
+    TextView textView;
     ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class CreatNewActivity extends AppCompatActivity {
         editTitle=findViewById(R.id.edit_text_title);
         editDescription=findViewById(R.id.edit_text_description);
         imageView=findViewById(R.id.image2);
-
+        textView=findViewById(R.id.description2);
 
         Init();
         Intent intent=getIntent();
@@ -68,7 +68,9 @@ public class CreatNewActivity extends AppCompatActivity {
                 intent.putExtra("title", editTitle.getText().toString().trim());
                 intent.putExtra("description", editDescription.getText().toString().trim());
                 intent.putExtra("position", position);
-                intent.putExtra("date", chooseItems.get(0).getDescription().toString().trim());
+                intent.putExtra("date",
+                        chooseAdapter.year+"-"+chooseAdapter.month+"-"+chooseAdapter.day+" "
+                                +chooseAdapter.hour+":"+chooseAdapter.minute+":"+chooseAdapter.second);
                 setResult(RESULT_OK, intent);
                 Log.d("bookTitle", editTitle.getText().toString());
                 CreatNewActivity.this.finish();

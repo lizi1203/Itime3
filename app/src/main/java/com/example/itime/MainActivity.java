@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     String returnedTitle = data.getStringExtra("title");
                     String returnedDescription = data.getStringExtra("description");
                     String returnedDate=data.getStringExtra("date");
-                    SimpleDateFormat sdFormat=new SimpleDateFormat("MMM dd,yyyy HH:mm:ss");
+                    SimpleDateFormat sdFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Date date = new Date();
                     try {
                         date = sdFormat.parse(returnedDate);

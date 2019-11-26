@@ -46,7 +46,8 @@ public class TimeAdapter extends ArrayAdapter<TimeItem> {
         ((TextView) oneTimeAllView.findViewById(R.id.date)).setText((CharSequence) simpleDateFormat.format(timeItem.getDate()));
         ((TextView) oneTimeAllView.findViewById(R.id.description)).setText(timeItem.getDescription());
         count = timeItem.getGapCount(timeItem.getDate(), date);
-        if ((count) > 0) {
+
+        if ((count) >= 0) {
             ((TextView) oneTimeAllView.findViewById(R.id.count_text_view)).setText(count/(60*60*24) + " DAYS");
         } else {
             ((TextView) oneTimeAllView.findViewById(R.id.count_text_view)).setText(count/(60*60*24)+ " DAYS AGO");
