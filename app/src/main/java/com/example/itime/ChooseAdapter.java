@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,6 +38,7 @@ public class ChooseAdapter extends ArrayAdapter<ChooseItem>{
     int hour;
     int minute;
     int second;
+    SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("MMM dd,yyyy HH:mm",Locale.ENGLISH);
 
     public ChooseAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ChooseItem> objects) {
         super(context, resource, objects);
@@ -102,13 +104,19 @@ public class ChooseAdapter extends ArrayAdapter<ChooseItem>{
                                 public void onClick(DialogInterface dialog, int which) {
                                     hour=timePicker.getHour();
                                     minute=timePicker.getMinute();
-                                    String monthE= String.format(String.valueOf(month), "%tb");
-                                    if(minute<10){
-                                       textViewDescription.setText(monthE+" "+day+","+year+" "+hour+":0"+minute);
-                                    }else
-                                    {
-                                        textViewDescription.setText(monthE+" "+day+","+year+" "+hour+":"+minute);
+
+                                    SimpleDateFormat sdFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    String datetime=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+                                    Date date = new Date();
+                                    try {
+                                        date = sdFormat.parse(datetime);
+                                    } catch (ParseException e) {
+                                        // TODO Auto-generated catch block
+                                        e.printStackTrace();
                                     }
+
+                                       textViewDescription.setText(simpleDateFormat1.format(date));
+
                                 }
                             });
                             builder2.setNegativeButton("取消", new DialogInterface.OnClickListener() {

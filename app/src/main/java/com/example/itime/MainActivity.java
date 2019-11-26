@@ -28,6 +28,7 @@ import android.widget.ListView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -105,13 +106,17 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     String returnedTitle = data.getStringExtra("title");
                     String returnedDescription = data.getStringExtra("description");
-                    String returnedDate;
+                    String returnedDate=data.getStringExtra("date");
+                    SimpleDateFormat sdFormat=new SimpleDateFormat("MMM dd,yyyy HH:mm:ss");
+                    Date date = new Date();
                     try {
-                        getTimeItemList().add(0,new TimeItem(returnedTitle, sdf.parse("2019-12-03"), returnedDescription,
-                                R.drawable.item_new));
+                        date = sdFormat.parse(returnedDate);
                     } catch (ParseException e) {
+                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
+                    getTimeItemList().add(0,new TimeItem(returnedTitle,date, returnedDescription,
+                            R.drawable.item_new));
                     timeAdapter.notifyDataSetChanged();
                 }
                 break;
