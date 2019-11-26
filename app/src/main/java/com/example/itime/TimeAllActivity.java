@@ -66,7 +66,7 @@ public class TimeAllActivity extends AppCompatActivity {
         String date=intent.getStringExtra("Date");
         final String description=intent.getStringExtra("Description");
         final int position=intent.getIntExtra("position", 0);
-        int count=intent.getIntExtra("count", 0);
+        final int count=intent.getIntExtra("count", 0);
 
         titleTextView2.setText(title);
         descriptionTextView2.setText(description);
