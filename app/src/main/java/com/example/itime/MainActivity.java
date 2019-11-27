@@ -29,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     TimeAdapter timeAdapter;
     DataFileSource dataFileSource;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM  dd,yyyy HH:mm:ss EEE", Locale.ENGLISH);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,11 +132,16 @@ public class MainActivity extends AppCompatActivity {
                 int position = data.getIntExtra("position", 0);
                 String title = data.getStringExtra("title");
                 String description = data.getStringExtra("description");
-
+                String date=data.getStringExtra("date");
                 TimeItem timeItem=timeItemList.get(position);
                 timeItem.setTitle(title);
                 timeItem.setDescription(description);
-                timeAdapter.notifyDataSetChanged();
+                    try {
+                        timeItem.setDate(simpleDateFormat.parse(date));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    timeAdapter.notifyDataSetChanged();
             }
                 break;
 

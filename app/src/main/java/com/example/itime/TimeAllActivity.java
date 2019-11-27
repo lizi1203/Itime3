@@ -32,9 +32,9 @@ public class TimeAllActivity extends AppCompatActivity {
     Context context=this;
     TextView titleTextView2,descriptionTextView2;
     TextView datetextview,counttextview;
-    private MyCount mc;
+    private MyCount mc1,mc2;
     SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("MMM  dd,yyyy HH:mm:ss EEE", Locale.ENGLISH);
-
+    SimpleDateFormat sdFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     int count;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -45,8 +45,24 @@ public class TimeAllActivity extends AppCompatActivity {
                     int position = data.getIntExtra("position", 0);
                     String title = data.getStringExtra("title");
                     String description = data.getStringExtra("description");
+                    String date=data.getStringExtra("date");
+                    Date date3 = new Date();
+                    Date date2=new Date(System.currentTimeMillis());
+                    try {
+                     date3=sdFormat.parse(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     titleTextView2.setText(title);
                     descriptionTextView2.setText(description);
+                    datetextview.setText(simpleDateFormat2.format(date3));
+
+                    int count2=0;
+                    count2 = TimeItem.getGapCount(date3, date2);
+                    mc1.cancel();
+                    mc2 = new MyCount(count2*1000, 1000);
+
+                    mc2.start();
                 }
                 break;
         }
@@ -83,9 +99,9 @@ public class TimeAllActivity extends AppCompatActivity {
         descriptionTextView2.setText(description);
         datetextview.setText(date);
 
-        mc = new MyCount(count*1000, 1000);
+        mc1 = new MyCount(count*1000, 1000);
 
-        mc.start();
+        mc1.start();
         buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +109,7 @@ public class TimeAllActivity extends AppCompatActivity {
                 intent.putExtra("title", titleTextView2.getText().toString().trim());
                 intent.putExtra("description", descriptionTextView2.getText().toString().trim());
                 intent.putExtra("position", position);
+                intent.putExtra("date", datetextview.getText().toString().trim());
                 setResult(RESULT_UPDATE, intent);
                 finish();
             }
@@ -128,6 +145,7 @@ public class TimeAllActivity extends AppCompatActivity {
                 Intent intent2=new Intent(TimeAllActivity.this,CreatNewActivity.class);
                 intent2.putExtra("title", title);
                 intent2.putExtra("description", description);
+                intent2.putExtra("date",datetextview.getText().toString() );
                 startActivityForResult(intent2,3);
             }
         });

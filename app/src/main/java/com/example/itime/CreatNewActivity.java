@@ -43,12 +43,16 @@ public class CreatNewActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String title=intent.getStringExtra("title");
         String description=intent.getStringExtra("description");
+        String date=intent.getStringExtra("date");
         final int position=intent.getIntExtra("position",0);
         if(title!=null) {
             editTitle.setText(title);
         }
         if(description!=null) {
             editDescription.setText(description);
+        }
+        if(date!=null) {
+            chooseItems.get(0).setDescription(date);
         }
 
         chooseAdapter = new ChooseAdapter(CreatNewActivity.this, R.layout.choose_item, chooseItems);

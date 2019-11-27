@@ -27,7 +27,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class TimeAdapter extends ArrayAdapter<TimeItem> {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM  dd,yyyy", Locale.ENGLISH);
-   
+
     SimpleDateFormat simpleDateFormat3 = new SimpleDateFormat("MMM  dd,yyyy HH:mm:ss EEE", Locale.ENGLISH);
     // HH:mm:ss//获取当前时间
 
