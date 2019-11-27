@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -35,7 +36,6 @@ public class ChooseAdapter extends ArrayAdapter<ChooseItem>{
 
     Dialog dialog1=new Dialog(getContext());
     Dialog dialog2=new Dialog(getContext());
-    Dialog dialog3=new Dialog(getContext());
     int year;
     int month;
     int day;
@@ -145,16 +145,19 @@ public class ChooseAdapter extends ArrayAdapter<ChooseItem>{
 
                 }
 
-                /*if(position==1){
-                    AlertDialog.Builder builder3 = new AlertDialog.Builder(getContext());
-                    final View view3 = LayoutInflater.from(getContext()).inflate(R.layout.menu_layout, null);
-
-                    builder3.setView(view3);
-                    builder3.setTitle("Period");
-
-                    dialog3 = builder3.create();
-                    dialog3.show();
-                }*/
+                if(position==1){
+                    final String[] items = {"Week", "Month", "Year", "Custom"};
+                    AlertDialog.Builder builder;
+                    builder = new AlertDialog.Builder(getContext()).setIcon(R.mipmap.ic_launcher)
+                            .setTitle("Period")
+                            .setItems(items, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    textViewDescription.setText(items[i]);
+                                }
+                            });
+                    builder.create().show();
+                }
             }
         });
         return view;
