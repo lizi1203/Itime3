@@ -14,5 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:datePickerMode="calendar"
+        android:theme="@style/MyDatePickerDialogTheme"
         ></DatePicker>
 </LinearLayout>

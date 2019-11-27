@@ -1,17 +1,20 @@
 package com.example.itime;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -32,6 +35,7 @@ public class ChooseAdapter extends ArrayAdapter<ChooseItem>{
 
     Dialog dialog1=new Dialog(getContext());
     Dialog dialog2=new Dialog(getContext());
+    Dialog dialog3=new Dialog(getContext());
     int year;
     int month;
     int day;
@@ -140,9 +144,22 @@ public class ChooseAdapter extends ArrayAdapter<ChooseItem>{
                     dialog1.show();
 
                 }
+
+                /*if(position==1){
+                    AlertDialog.Builder builder3 = new AlertDialog.Builder(getContext());
+                    final View view3 = LayoutInflater.from(getContext()).inflate(R.layout.menu_layout, null);
+
+                    builder3.setView(view3);
+                    builder3.setTitle("Period");
+
+                    dialog3 = builder3.create();
+                    dialog3.show();
+                }*/
             }
         });
         return view;
     }
+
+
 }
 

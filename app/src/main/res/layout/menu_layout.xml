@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="300dp"
+    android:layout_width="260dp"
+    android:layout_gravity="center_horizontal"
+   >
+    <item
+        android:id="@+id/Week"
+        android:title="Week" />
+    <item
+        android:id="@+id/Month"
+        android:title="Month" />
+    <item
+        android:id="@+id/Year"
+        android:title="Year" />
+    <item
+        android:id="@+id/Custom"
+        android:title="Custom" />
+</menu>
